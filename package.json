@@ -1,0 +1,25 @@
+{
+  "name": "flex7",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/app.js",
+  "scripts": {
+    "start": "tsc && node dist/app.js",
+    "dev": "tsc && nodemon dist/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "commerce"
+  ],
+  "author": "paul Mahoro\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[P",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.16.1",
+    "nodemon": "^2.0.4",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
