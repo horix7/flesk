@@ -15,6 +15,13 @@ class Validation {
    
     })
 
+    accountSchema= Joi.object({
+        owner: Joi.string().required().trim(),
+        name: Joi.string().required().trim(),
+        type: Joi.string().required().trim(),
+        members: Joi.array().required()
+    })
+
 
     userSignUpVerification = (request: Request, response :Response, next: NextFunction) => {
        

@@ -1,16 +1,23 @@
 import  express from 'express'
-import controllers from '../controllers/auth-controllers'
+import userControllers from '../controllers/auth-controllers'
 import validator from '../middleware/validator'
+
 
 const router = express.Router()
 
 
-router.get("/users", controllers.getAllUsers)
-router.get("/user/:user_id", controllers.oneUser)
+router.get("/users", userControllers.getAllUsers)
+router.get("/user/:user_id", userControllers.oneUser)
 
-router.route("/signup").post(validator.userSignUpVerification, controllers.userRegistriration)
 
-router.route("/signin").post(controllers.userSignin)
+router.route("/account")
+.get( userControllers.getAllAccount)
+.post(userControllers.createAccount)
+
+
+router.route("/signup").post(validator.userSignUpVerification, userControllers.userRegistriration)
+
+router.route("/signin").post(userControllers.userSignin)
 
     
 

@@ -1,4 +1,5 @@
 import userModels from '../models/user.model'
+import accountModel from  '../models/accounts.model'
 import {Response, Request} from 'express'
 import {checkErrorExistsance} from '../helpers/errorturns'
 import authenticator from  '../middleware/authenticate'
@@ -10,6 +11,30 @@ class UserController {
         const results = await userModels.allUsers()
         return response.status(200).json({results})
        
+    }
+
+    getAllAccount = async(request : Request, response : Response) =>  {
+       
+        const results = await accountModel.allAccount()
+        return response.status(200).json({results})
+       
+    }
+
+    createAccount = async( request: Request, response: Response) => {
+        const results = await userModels.userSinUp(request.body)
+
+        
+        if(checkErrorExistsance(results).error && checkErrorExistsance(results).conflict) return response.status(409).json({...results})
+        else if(checkErrorExistsance(results).error && !checkErrorExistsance(results).conflict) return response.status(400).json({...results})   
+        else  {
+            const registeredUserInfo: any = await userModels.registeredUser(results.registeredId)
+            
+            return response.status(201).json({
+                status: "success",
+                accesToken: authenticator.userAuth({...registeredUserInfo._doc}),
+                accountDetails: {...registeredUserInfo._doc}
+            })
+        }  
     }
 
     userRegistriration = async( request: Request, response: Response) => {
